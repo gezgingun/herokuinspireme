@@ -15,7 +15,7 @@ ASK_VERIFY_TIMESTAMP_DEBUG = True
 
 @ask.intent("inspire_me")
 def main_function():
-    return dinner_recommendation()
+    return compliment_teller()
 
     
 @ask.intent("AMAZON.StopIntent")
@@ -30,7 +30,7 @@ def cancel_function():
 
 @ask.launch
 def launched():
-    return dinner_recommendation()
+    return compliment_teller()
 
 @ask.session_ended
 def session_ended():
@@ -86,30 +86,30 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
     if intent_name == "inspire_me":
-        return dinner_recommendation()
+        return compliment_teller()
 
 
 #--------------- App Functions ------------------------
-def dinner_recommendation():
+def compliment_teller():
     session_attributes = {}
     card_title = "Daily inspiration"
-    dinner = get_dinner()
-    speech_output = "Here we go. "+dinner
-    reprompt_text = dinner
+    compliment = get_compliment()
+    speech_output = "The truth is... "+compliment
+    reprompt_text = compliment
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
 
-def get_dinner():
+def get_compliment():
     now = datetime.datetime.now()
     day = now.day
-    return food_list[int(day)%10]
+    return compliments_list[int(day)%10]
 
 
 #---------------- Food List ----------------------------
 #BURAYA_YENI_STRINGLER
-food_list = ("You are the nicest thing on earth that can stand on its own feet!", "You are the nicest thing on earth that can stand on its own feet!", "You shine bright like a diamond today", "You shine bright like a diamond today", "You are the nicest thing on earth that can stand on its own feet!", "You shine bright like a diamond today", "You are the nicest thing on earth that can stand on its own feet!", "You shine bright like a diamond today", "You are the nicest thing on earth that can stand on its own feet!", "You shine bright like a diamond today", "You are the nicest thing on earth that can stand on its own feet!", "You shine bright like a diamond today")
+compliments_list = ("Wow, you shine bright like a diamond today.", "I can't think of anyone that could resist your charm.", "You should be proud of yourself, you are awesome.", "You're even more beautiful on the inside than you are on the outside.", "You don't need any inspiration, I am inspired by you!", "You are so good that you bring out the best in other people.", "I love your style, you are my icon.", "You're like sunshine on a rainy day.", "Colors seem brighter when you're around.", "People are lucky to have you around.", "You're like a candle in the darkness. ", "Being around you is like a happy little vacation." )
 
 
 if __name__ == '__main__':
