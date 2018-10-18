@@ -17,12 +17,12 @@ ASK_VERIFY_TIMESTAMP_DEBUG = True
 def main_function():
     return dinner_recommendation()
 
-	
+    
 @ask.intent("AMAZON.StopIntent")
 def stop_function():
     return statement("See you tomorrow")
 
-	
+    
 @ask.intent("AMAZON.CancelIntent")
 def cancel_function():
     return statement("See you tomorrow")
@@ -91,7 +91,6 @@ def on_intent(intent_request, session):
 
 #--------------- App Functions ------------------------
 def dinner_recommendation():
-    #BURAYA_KART_VE_SESLI_MESAJLAR_GELECEK
     session_attributes = {}
     card_title = "Daily inspiration"
     dinner = get_dinner()
@@ -118,8 +117,8 @@ if __name__ == '__main__':
         verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
         if verify == 'false':
             app.config['ASK_VERIFY_REQUESTS'] = False
-	app.config['ASK_APPLICATION_ID'] = 'amzn1.ask.skill.032dbe18-8f0f-4620-b594-94a20853c97c'
-	app.config['ASK_VERIFY_REQUESTS'] = True
-	app.config['ASK_VERIFY_TIMESTAMP_DEBUG'] = True
+    app.config['ASK_APPLICATION_ID'] = 'amzn1.ask.skill.032dbe18-8f0f-4620-b594-94a20853c97c'
+    app.config['ASK_VERIFY_REQUESTS'] = True
+    app.config['ASK_VERIFY_TIMESTAMP_DEBUG'] = True
     app.run(debug=True)
 
