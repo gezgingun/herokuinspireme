@@ -1,0 +1,4 @@
+cryptography # necessary to enable openssl on heroku
+Flask
+gunicorn
+flask_ask
